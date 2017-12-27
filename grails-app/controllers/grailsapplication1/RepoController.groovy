@@ -50,9 +50,8 @@ class RepoController {
             System.out.println("Repository Root: " + repository.getRepositoryRoot(true));
 
 
-
          render(view: "tree",model: [
-                                    repository: repository.getRepositoryRoot(true),
+                                    repository: repository,
                                     latestRevision: repository.getLatestRevision(),
                                     entries: repository.getDir("", -1, null, (Collection) null),
                                     currentDirectory: currentDirectory+"/",
