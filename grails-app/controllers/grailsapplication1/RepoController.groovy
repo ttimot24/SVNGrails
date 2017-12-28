@@ -47,13 +47,16 @@ class RepoController {
                 System.err.println("The entry at '" + url + "' is a file while a directory was expected.");
             }
 
-            System.out.println("Repository Root: " + repository.getRepositoryRoot(true));
+            println("Repository Root: " + repository.getRepositoryRoot(true));
 
+            def entries = repository.getDir("", -1, null, (Collection) null);
+            
+            Collections.sort(entries);
 
          render(view: "tree",model: [
                                     repository: repository,
                                     latestRevision: repository.getLatestRevision(),
-                                    entries: repository.getDir("", -1, null, (Collection) null),
+                                    entries: entries,
                                     currentDirectory: currentDirectory+"/",
                                     ]);
     }
