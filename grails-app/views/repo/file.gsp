@@ -4,9 +4,11 @@
     <head>
         <meta name="layout" content="main">
         <title>File viewer</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/kimbie.dark.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body>
-        <h1>Sample line</h1>
+        <pre><code class="html">${content}</code></pre>
     </body>
 </html>

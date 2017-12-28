@@ -25,7 +25,7 @@
               <g:if test="${entry.getKind() == org.tmatesoft.svn.core.SVNNodeKind.DIR}">
                   <i class="fa fa-folder" aria-hidden="true"></i> <a href="?dir=${currentDirectory}${entry.getPath()}"><b>${entry.getName()}</b></a>
               </g:if><g:else>
-                  <i class="fa fa-file-o" aria-hidden="true"></i> <a href="?dir=${currentDirectory}${entry.getPath()}"><b>${entry.getName()}</b></a>
+                  <i class="fa fa-file-o" aria-hidden="true"></i> <a href="view?file=${currentDirectory}${entry.getPath()}"><b>${entry.getName()}</b></a>
               </g:else>
               
               ${entry.getCommitMessage()} <font class="text-muted" style="font-size:12px;"> | ${entry.getAuthor()}</font>  

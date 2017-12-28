@@ -7,6 +7,7 @@ import java.util.Map.Entry
 import org.tmatesoft.svn.core.SVNDirEntry;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNNodeKind;
+import org.tmatesoft.svn.core.SVNProperties
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
@@ -18,24 +19,23 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 
 class RepoController {
-
+    
+    def baseUrl="https://github.com/ttimot24/HorizontCMS/";
+    def name = "";
+    def password = "";
+   
     def index() {
 
-        params.dump();
-        
-        def currentDirectory="";
+            def currentDirectory="";
         
             if (!params.dir.equals(null)) {
                 currentDirectory = params.dir;
             }
-        
-            def url = "https://github.com/ttimot24/HorizontCMS/trunk/"+currentDirectory;
-            def name = "";
-            def password = "";
+            
+            def url = baseUrl+"trunk/"+currentDirectory;
   
             SVNRepository repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(url));
 
-        
             /* ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(name, password);
              repository.setAuthenticationManager(authManager); */
 
@@ -60,6 +60,31 @@ class RepoController {
                                     currentDirectory: currentDirectory+"/",
                                     ]);
     }
+    
+    
+    
+    def view(){
+        
+        
+            def currentDirectory="";
+        
+            if (!params.file.equals(null)) {
+                currentDirectory = params.file;
+            }
+            
+            def url = baseUrl+"trunk/"+currentDirectory;
+  
+            SVNRepository repository = SVNRepositoryFactory.create(SVNURL.parseURIEncoded(url));
+            
+            SVNProperties properties = new SVNProperties();
+            ByteArrayOutputStream content = new ByteArrayOutputStream();
+            repository.getFile("", -1, properties, content);
+                   
+            render(view: "file",model: [
+                    content: content.toString(),
+                                    ]);
+    }
+    
     
     
         public static Collection listEntries(SVNRepository repository, String path) throws SVNException {
