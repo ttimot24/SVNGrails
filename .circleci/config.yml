@@ -21,4 +21,4 @@ jobs:
 
 
       - run: sudo chmod +x ./gradlew 
-      - run: ./gradlew
+      - run: ./gradlew --stacktrace
